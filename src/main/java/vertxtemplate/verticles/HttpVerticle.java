@@ -1,10 +1,9 @@
-package vertxtemplate;
+package vertxtemplate.verticles;
 
 import io.vertx.core.Future;
 import io.vertx.core.VerticleBase;
 
-public class MainVerticle extends VerticleBase {
-
+public class HttpVerticle extends VerticleBase {
     @Override
     public Future<?> start() {
         return vertx.createHttpServer().requestHandler(req -> req.response()

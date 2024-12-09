@@ -1,4 +1,4 @@
-build/classes
+build/
 
 ### Vert.x ###
 .vertx/

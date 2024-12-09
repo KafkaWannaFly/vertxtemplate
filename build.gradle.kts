@@ -19,8 +19,8 @@ repositories {
 val vertxVersion = "5.0.0.CR2"
 val junitJupiterVersion = "5.9.1"
 
-val mainVerticleName = "vertxtemplate.MainVerticle"
-val launcherClassName = "io.vertx.launcher.application.VertxApplication"
+val mainVerticleName = "vertxtemplate.verticles.MainVerticle"
+val launcherClassName = "vertxtemplate.AppLauncher"
 
 val watchForChange = "src/**/*"
 val doOnChange = "${projectDir}/gradlew classes"
@@ -40,6 +40,9 @@ dependencies {
     implementation("jakarta.inject:jakarta.inject-api:2.0.1")
     implementation("com.google.dagger:dagger:2.53")
     annotationProcessor("com.google.dagger:dagger-compiler:2.53")
+    implementation("io.vertx:vertx-config:$vertxVersion")
+    implementation("io.vertx:vertx-config-yaml:$vertxVersion")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.15.2")
     testImplementation("io.vertx:vertx-junit5")
     testImplementation("org.junit.jupiter:junit-jupiter:$junitJupiterVersion")
 }
