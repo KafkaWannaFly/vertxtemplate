@@ -7,7 +7,7 @@ import dagger.internal.QualifierMetadata;
 import dagger.internal.ScopeMetadata;
 import javax.annotation.processing.Generated;
 import javax.inject.Provider;
-import vertxtemplate.repos.IFilmRepo;
+import vertxtemplate.repos.AppRepos;
 import vertxtemplate.services.IFilmService;
 
 @ScopeMetadata
@@ -29,25 +29,25 @@ import vertxtemplate.services.IFilmService;
 public final class AppModule_ProvideFilmServiceFactory implements Factory<IFilmService> {
   private final AppModule module;
 
-  private final Provider<IFilmRepo> filmRepoProvider;
+  private final Provider<AppRepos> appReposProvider;
 
   public AppModule_ProvideFilmServiceFactory(AppModule module,
-      Provider<IFilmRepo> filmRepoProvider) {
+      Provider<AppRepos> appReposProvider) {
     this.module = module;
-    this.filmRepoProvider = filmRepoProvider;
+    this.appReposProvider = appReposProvider;
   }
 
   @Override
   public IFilmService get() {
-    return provideFilmService(module, filmRepoProvider.get());
+    return provideFilmService(module, appReposProvider.get());
   }
 
   public static AppModule_ProvideFilmServiceFactory create(AppModule module,
-      Provider<IFilmRepo> filmRepoProvider) {
-    return new AppModule_ProvideFilmServiceFactory(module, filmRepoProvider);
+      Provider<AppRepos> appReposProvider) {
+    return new AppModule_ProvideFilmServiceFactory(module, appReposProvider);
   }
 
-  public static IFilmService provideFilmService(AppModule instance, IFilmRepo filmRepo) {
-    return Preconditions.checkNotNullFromProvides(instance.provideFilmService(filmRepo));
+  public static IFilmService provideFilmService(AppModule instance, AppRepos appRepos) {
+    return Preconditions.checkNotNullFromProvides(instance.provideFilmService(appRepos));
   }
 }

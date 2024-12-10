@@ -4,7 +4,7 @@ import io.vertx.core.Vertx;
 import io.vertx.core.internal.logging.Logger;
 import io.vertx.core.internal.logging.LoggerFactory;
 import vertxtemplate.di.AppModule;
-import vertxtemplate.di.DaggerAppComponent;
+import vertxtemplate.di.DaggerIAppComponent;
 import vertxtemplate.verticles.HttpVerticle;
 
 public class AppLauncher {
@@ -12,7 +12,7 @@ public class AppLauncher {
 
     public static void main(String[] args) {
         var vertx = Vertx.vertx();
-        var appComponent = DaggerAppComponent.builder()
+        var appComponent = DaggerIAppComponent.builder()
                 .appModule(new AppModule(vertx))
                 .build();
 

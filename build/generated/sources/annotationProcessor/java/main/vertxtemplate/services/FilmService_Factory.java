@@ -6,7 +6,7 @@ import dagger.internal.QualifierMetadata;
 import dagger.internal.ScopeMetadata;
 import javax.annotation.processing.Generated;
 import javax.inject.Provider;
-import vertxtemplate.repos.IFilmRepo;
+import vertxtemplate.repos.AppRepos;
 
 @ScopeMetadata
 @QualifierMetadata
@@ -25,22 +25,22 @@ import vertxtemplate.repos.IFilmRepo;
     "nullness:initialization.field.uninitialized"
 })
 public final class FilmService_Factory implements Factory<FilmService> {
-  private final Provider<IFilmRepo> filmRepoProvider;
+  private final Provider<AppRepos> appReposProvider;
 
-  public FilmService_Factory(Provider<IFilmRepo> filmRepoProvider) {
-    this.filmRepoProvider = filmRepoProvider;
+  public FilmService_Factory(Provider<AppRepos> appReposProvider) {
+    this.appReposProvider = appReposProvider;
   }
 
   @Override
   public FilmService get() {
-    return newInstance(filmRepoProvider.get());
+    return newInstance(appReposProvider.get());
   }
 
-  public static FilmService_Factory create(Provider<IFilmRepo> filmRepoProvider) {
-    return new FilmService_Factory(filmRepoProvider);
+  public static FilmService_Factory create(Provider<AppRepos> appReposProvider) {
+    return new FilmService_Factory(appReposProvider);
   }
 
-  public static FilmService newInstance(IFilmRepo filmRepo) {
-    return new FilmService(filmRepo);
+  public static FilmService newInstance(AppRepos appRepos) {
+    return new FilmService(appRepos);
   }
 }

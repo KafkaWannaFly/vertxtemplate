@@ -1,13 +1,13 @@
 package vertxtemplate.controllers;
 
 import jakarta.inject.Inject;
-import vertxtemplate.services.IFilmService;
+import vertxtemplate.services.AppServices;
 
 public class FilmController {
-    private final IFilmService filmService;
+    private final AppServices appServices;
 
     @Inject
-    public FilmController(IFilmService filmService) {
-        this.filmService = filmService;
+    public FilmController(AppServices appServices) {
+        this.appServices = appServices;
     }
 }

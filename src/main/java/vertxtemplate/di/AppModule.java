@@ -8,6 +8,7 @@ import io.vertx.config.ConfigStoreOptions;
 import io.vertx.core.Vertx;
 import io.vertx.core.json.JsonObject;
 import vertxtemplate.configs.Config;
+import vertxtemplate.repos.AppRepos;
 import vertxtemplate.repos.FilmRepo;
 import vertxtemplate.repos.IFilmRepo;
 import vertxtemplate.services.FilmService;
@@ -27,8 +28,8 @@ public class AppModule {
     }
 
     @Provides
-    IFilmService provideFilmService(IFilmRepo filmRepo) {
-        return new FilmService(filmRepo);
+    IFilmService provideFilmService(AppRepos appRepos) {
+        return new FilmService(appRepos);
     }
 
     @Provides

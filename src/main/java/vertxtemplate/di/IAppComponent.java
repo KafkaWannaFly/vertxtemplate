@@ -2,10 +2,11 @@ package vertxtemplate.di;
 
 import dagger.Component;
 import vertxtemplate.configs.Config;
-import vertxtemplate.controllers.FilmController;
+import vertxtemplate.controllers.AppControllers;
 
 @Component(modules = AppModule.class)
 public interface IAppComponent {
     Config config();
-    FilmController filmController();
+
+    AppControllers appControllers();
 }

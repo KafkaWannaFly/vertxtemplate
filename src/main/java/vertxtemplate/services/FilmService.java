@@ -1,13 +1,13 @@
 package vertxtemplate.services;
 
 import jakarta.inject.Inject;
-import vertxtemplate.repos.IFilmRepo;
+import vertxtemplate.repos.AppRepos;
 
 public class FilmService implements IFilmService {
-    private final IFilmRepo filmRepo;
+    private final AppRepos appRepos;
 
     @Inject
-    public FilmService(IFilmRepo filmRepo) {
-        this.filmRepo = filmRepo;
+    public FilmService(AppRepos appRepos) {
+        this.appRepos = appRepos;
     }
 }
