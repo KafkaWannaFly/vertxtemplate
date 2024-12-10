@@ -7,6 +7,7 @@ plugins {
     id("com.github.johnrengelman.shadow") version "7.1.2"
     id("org.jetbrains.kotlin.kapt") version "2.1.0"
     id("com.diffplug.spotless") version "7.0.0.BETA4"
+    id("checkstyle")
 }
 
 group = "com.kafkawannafly"
@@ -77,6 +78,16 @@ spotless {
         removeUnusedImports()
         palantirJavaFormat().formatJavadoc(true)
         formatAnnotations()
+        trimTrailingWhitespace()
         targetExclude("**/generated/**", "**/build/**")
     }
+}
+
+checkstyle {
+    toolVersion = "10.20.2"
+    configFile = file("$rootDir/code-style-google.xml")
+}
+
+tasks.check {
+    dependsOn("spotlessCheck", "checkstyleMain")
 }
