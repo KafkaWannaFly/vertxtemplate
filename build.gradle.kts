@@ -31,11 +31,9 @@ application {
 
 dependencies {
     implementation(platform("io.vertx:vertx-stack-depchain:$vertxVersion"))
-    implementation("io.vertx:vertx-launcher-application")
     implementation("io.vertx:vertx-auth-jwt")
     implementation("io.vertx:vertx-web")
     implementation("io.vertx:vertx-pg-client")
-    implementation("io.vertx:vertx-rx-java3")
     implementation("com.ongres.scram:client:2.1")
     implementation("jakarta.inject:jakarta.inject-api:2.0.1")
     implementation("com.google.dagger:dagger:2.53")
