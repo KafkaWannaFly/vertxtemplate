@@ -1,4 +1,4 @@
-package vertxtemplate.config;
+package vertxtemplate.configs;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

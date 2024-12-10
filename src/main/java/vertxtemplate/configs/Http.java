@@ -1,4 +1,4 @@
-package vertxtemplate.config;
+package vertxtemplate.configs;
 
 public record Http(int port) {
 }

@@ -3,6 +3,7 @@ package vertxtemplate.di;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Preconditions;
 import javax.annotation.processing.Generated;
+import vertxtemplate.configs.Config;
 import vertxtemplate.controllers.FilmController;
 import vertxtemplate.services.IFilmService;
 
@@ -28,10 +29,6 @@ public final class DaggerAppComponent {
     return new Builder();
   }
 
-  public static AppComponent create() {
-    return new Builder().build();
-  }
-
   public static final class Builder {
     private AppModule appModule;
 
@@ -43,15 +40,13 @@ public final class DaggerAppComponent {
       return this;
     }
 
-    public AppComponent build() {
-      if (appModule == null) {
-        this.appModule = new AppModule();
-      }
+    public IAppComponent build() {
+      Preconditions.checkBuilderRequirement(appModule, AppModule.class);
       return new AppComponentImpl(appModule);
     }
   }
 
-  private static final class AppComponentImpl implements AppComponent {
+  private static final class AppComponentImpl implements IAppComponent {
     private final AppModule appModule;
 
     private final AppComponentImpl appComponentImpl = this;
@@ -63,6 +58,11 @@ public final class DaggerAppComponent {
 
     private IFilmService iFilmService() {
       return AppModule_ProvideFilmServiceFactory.provideFilmService(appModule, AppModule_ProvideFilmRepoFactory.provideFilmRepo(appModule));
+    }
+
+    @Override
+    public Config config() {
+      return AppModule_ProvideConfigFactory.provideConfig(appModule);
     }
 
     @Override
