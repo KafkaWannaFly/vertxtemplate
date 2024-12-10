@@ -5,8 +5,8 @@ plugins {
     java
     application
     id("com.github.johnrengelman.shadow") version "7.1.2"
-
     id("org.jetbrains.kotlin.kapt") version "2.1.0"
+    id("com.diffplug.spotless") version "7.0.0.BETA4"
 }
 
 group = "com.kafkawannafly"
@@ -41,6 +41,7 @@ dependencies {
     implementation("io.vertx:vertx-config:$vertxVersion")
     implementation("io.vertx:vertx-config-yaml:$vertxVersion")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.15.2")
+
     testImplementation("io.vertx:vertx-junit5")
     testImplementation("org.junit.jupiter:junit-jupiter:$junitJupiterVersion")
 }
@@ -67,4 +68,15 @@ tasks.withType<Test> {
 
 tasks.withType<JavaExec> {
     args = listOf(mainVerticleName)
+}
+
+spotless {
+    isEnforceCheck = true
+    java {
+        importOrder("java|javax", "vertxtemplate", "com", "\\#vertxtemplate", "\\#", "")
+        removeUnusedImports()
+        palantirJavaFormat().formatJavadoc(true)
+        formatAnnotations()
+        targetExclude("**/generated/**", "**/build/**")
+    }
 }

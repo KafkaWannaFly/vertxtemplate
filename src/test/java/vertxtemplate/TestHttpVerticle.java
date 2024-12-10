@@ -11,13 +11,13 @@ import vertxtemplate.verticles.HttpVerticle;
 @ExtendWith(VertxExtension.class)
 public class TestHttpVerticle {
 
-  @BeforeEach
-  void deploy_verticle(Vertx vertx, VertxTestContext testContext) {
-    vertx.deployVerticle(new HttpVerticle()).onComplete(testContext.succeeding(id -> testContext.completeNow()));
-  }
+    @BeforeEach
+    void deploy_verticle(Vertx vertx, VertxTestContext testContext) {
+        vertx.deployVerticle(new HttpVerticle()).onComplete(testContext.succeeding(id -> testContext.completeNow()));
+    }
 
-  @Test
-  void verticle_deployed(Vertx vertx, VertxTestContext testContext) throws Throwable {
-    testContext.completeNow();
-  }
+    @Test
+    void verticle_deployed(Vertx vertx, VertxTestContext testContext) throws Throwable {
+        testContext.completeNow();
+    }
 }

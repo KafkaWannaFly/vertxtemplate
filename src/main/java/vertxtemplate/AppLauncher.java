@@ -12,14 +12,12 @@ public class AppLauncher {
 
     public static void main(String[] args) {
         var vertx = Vertx.vertx();
-        var appComponent = DaggerIAppComponent.builder()
-                .appModule(new AppModule(vertx))
-                .build();
+        var appComponent =
+                DaggerIAppComponent.builder().appModule(new AppModule(vertx)).build();
 
         var config = appComponent.config();
         logger.info("Loaded config: " + config);
 
         vertx.deployVerticle(new HttpVerticle());
     }
-
 }

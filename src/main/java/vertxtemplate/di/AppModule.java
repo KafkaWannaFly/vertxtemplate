@@ -39,12 +39,9 @@ public class AppModule {
                 .setFormat("yaml")
                 .setConfig(new JsonObject().put("path", "src/main/resources/application.yaml"));
 
-        var envStore = new ConfigStoreOptions()
-                .setType("env");
+        var envStore = new ConfigStoreOptions().setType("env");
 
-        var options = new ConfigRetrieverOptions()
-                .addStore(fileStore)
-                .addStore(envStore);
+        var options = new ConfigRetrieverOptions().addStore(fileStore).addStore(envStore);
 
         var retriever = ConfigRetriever.create(vertx, options);
 
