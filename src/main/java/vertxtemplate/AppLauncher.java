@@ -1,15 +1,11 @@
 package vertxtemplate;
 
 import io.vertx.core.Vertx;
-import io.vertx.core.internal.logging.Logger;
-import io.vertx.core.internal.logging.LoggerFactory;
 import org.apache.commons.lang3.ObjectUtils;
 import vertxtemplate.di.AppModule;
 import vertxtemplate.di.DaggerIAppComponent;
 
 public class AppLauncher {
-    private static final Logger logger = LoggerFactory.getLogger(AppLauncher.class);
-
     public static void main(String[] args) {
         var vertx = Vertx.vertx();
         var appComponent =
