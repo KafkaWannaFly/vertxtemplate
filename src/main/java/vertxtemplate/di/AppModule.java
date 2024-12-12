@@ -8,11 +8,15 @@ import io.vertx.config.ConfigStoreOptions;
 import io.vertx.core.Vertx;
 import io.vertx.core.json.JsonObject;
 import vertxtemplate.configs.Config;
+import vertxtemplate.controllers.AppControllers;
+import vertxtemplate.controllers.FilmController;
 import vertxtemplate.repos.AppRepos;
 import vertxtemplate.repos.FilmRepo;
 import vertxtemplate.repos.IFilmRepo;
+import vertxtemplate.services.AppServices;
 import vertxtemplate.services.FilmService;
 import vertxtemplate.services.IFilmService;
+import vertxtemplate.verticles.HttpVerticle;
 
 @Module
 public class AppModule {
@@ -23,13 +27,38 @@ public class AppModule {
     }
 
     @Provides
+    HttpVerticle provideHttpVerticle(Config config) {
+        return new HttpVerticle(config);
+    }
+
+    @Provides
     IFilmRepo provideFilmRepo() {
         return new FilmRepo();
     }
 
     @Provides
+    AppRepos provideAppRepos(IFilmRepo filmRepo) {
+        return new AppRepos(filmRepo);
+    }
+
+    @Provides
     IFilmService provideFilmService(AppRepos appRepos) {
         return new FilmService(appRepos);
+    }
+
+    @Provides
+    AppServices provideAppServices(IFilmService filmService) {
+        return new AppServices(filmService);
+    }
+
+    @Provides
+    FilmController provideFilmController(AppServices appServices) {
+        return new FilmController(appServices);
+    }
+
+    @Provides
+    AppControllers provideAppControllers(FilmController filmController) {
+        return new AppControllers(filmController);
     }
 
     @Provides

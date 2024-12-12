@@ -19,6 +19,7 @@ repositories {
 
 val vertxVersion = "5.0.0.CR2"
 val junitJupiterVersion = "5.9.1"
+val lombokVersion = "1.18.36"
 
 val mainVerticleName = "vertxtemplate.verticles.MainVerticle"
 val launcherClassName = "vertxtemplate.AppLauncher"
@@ -42,9 +43,16 @@ dependencies {
     implementation("io.vertx:vertx-config:$vertxVersion")
     implementation("io.vertx:vertx-config-yaml:$vertxVersion")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.15.2")
+    implementation("org.apache.commons:commons-lang3:3.17.0")
 
     testImplementation("io.vertx:vertx-junit5")
     testImplementation("org.junit.jupiter:junit-jupiter:$junitJupiterVersion")
+
+    compileOnly("org.projectlombok:lombok:$lombokVersion")
+    annotationProcessor("org.projectlombok:lombok:$lombokVersion")
+
+    testCompileOnly("org.projectlombok:lombok:$lombokVersion")
+    testAnnotationProcessor("org.projectlombok:lombok:$lombokVersion")
 }
 
 java {

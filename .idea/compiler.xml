@@ -7,6 +7,7 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.dagger/dagger-compiler/2.53/417b9ccf8883009f368d2f93eb5b5a6e69b2618e/dagger-compiler-2.53.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.36/5a30490a6e14977d97d9c73c924c1f1b5311ea95/lombok-1.18.36.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.dagger/dagger-spi/2.53/87d736f504a72a14bb617e546546273589c43c07/dagger-spi-2.53.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.dagger/dagger/2.53/e19cc0e0451ed350ac518af151b81501fe057c7f/dagger-2.53.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.googlejavaformat/google-java-format/1.5/fba7f130d29061d2d2ea384b4880c10cae92ef73/google-java-format-1.5.jar" />
@@ -32,6 +33,13 @@
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/13.0/919f0dfe192fb4e063e7dacadee7f8bb9a2672a9/annotations-13.0.jar" />
         </processorPath>
         <module name="vertxtemplate.main" />
+      </profile>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.36/5a30490a6e14977d97d9c73c924c1f1b5311ea95/lombok-1.18.36.jar" />
+        </processorPath>
+        <module name="vertxtemplate.test" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="21" />

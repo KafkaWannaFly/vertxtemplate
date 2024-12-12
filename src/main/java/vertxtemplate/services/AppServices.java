@@ -2,11 +2,8 @@ package vertxtemplate.services;
 
 import jakarta.inject.Inject;
 
-public class AppServices {
-    private final IFilmService filmService;
-
+public record AppServices(IFilmService filmService) {
     @Inject
-    public AppServices(IFilmService filmService) {
-        this.filmService = filmService;
+    public AppServices {
     }
 }
