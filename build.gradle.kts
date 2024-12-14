@@ -1,5 +1,6 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.gradle.api.tasks.testing.logging.TestLogEvent.*
+import org.yaml.snakeyaml.Yaml
 
 plugins {
     java
@@ -9,6 +10,12 @@ plugins {
     id("com.diffplug.spotless") version "7.0.0.BETA4"
     id("checkstyle")
     id("org.liquibase.gradle") version "2.2.0"
+}
+
+buildscript {
+    dependencies {
+        classpath("org.yaml:snakeyaml:2.3")
+    }
 }
 
 group = "com.kafkawannafly"
@@ -109,11 +116,22 @@ tasks.check {
 liquibase {
     activities {
         create("main") {
+            val yaml = Yaml()
+            val inputStream = File("src/main/resources/application.yaml").inputStream()
+            val config = yaml.load<Map<String, Any>>(inputStream)
+            val dbConfig = config["db"] as Map<*, *>
+
+            val host = dbConfig["host"]
+            val port = dbConfig["port"]
+            val name = dbConfig["name"]
+            val user = dbConfig["user"]
+            val password = dbConfig["password"]
+
             arguments = mapOf(
                 "changeLogFile" to "src/main/resources/db/changelog/master.yaml",
-                "url" to "jdbc:postgresql://localhost:5432/postgres",
-                "username" to "example",
-                "password" to "example"
+                "url" to "jdbc:postgresql://$host:$port/$name",
+                "username" to user,
+                "password" to password
             )
         }
     }
