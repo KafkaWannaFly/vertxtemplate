@@ -8,6 +8,7 @@ plugins {
     id("org.jetbrains.kotlin.kapt") version "2.1.0"
     id("com.diffplug.spotless") version "7.0.0.BETA4"
     id("checkstyle")
+    id("org.liquibase.gradle") version "2.2.0"
 }
 
 group = "com.kafkawannafly"
@@ -53,6 +54,11 @@ dependencies {
 
     testCompileOnly("org.projectlombok:lombok:$lombokVersion")
     testAnnotationProcessor("org.projectlombok:lombok:$lombokVersion")
+
+    liquibaseRuntime("org.liquibase:liquibase-core:4.30.0")
+    liquibaseRuntime("org.yaml:snakeyaml:2.3")
+    liquibaseRuntime("org.postgresql:postgresql:42.7.2")
+    liquibaseRuntime("info.picocli:picocli:4.7.5")
 }
 
 java {
@@ -98,4 +104,18 @@ checkstyle {
 
 tasks.check {
     dependsOn("spotlessCheck", "checkstyleMain")
+}
+
+liquibase {
+    activities {
+        create("main") {
+            arguments = mapOf(
+                "changeLogFile" to "src/main/resources/db/changelog/master.yaml",
+                "url" to "jdbc:postgresql://localhost:5432/postgres",
+                "username" to "example",
+                "password" to "example"
+            )
+        }
+    }
+    runList = "main"
 }

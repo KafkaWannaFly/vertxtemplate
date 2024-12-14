@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: kafka
+      changes:
+        - sqlFile:
+            path: ./changesets/01_create_film.up.sql
+            relativeToChangelogFile: true
+      rollback:
+        - sqlFile:
+            path: ./changesets/01_create_film.down.sql
+            relativeToChangelogFile: true
