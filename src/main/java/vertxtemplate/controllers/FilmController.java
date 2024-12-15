@@ -1,13 +1,11 @@
 package vertxtemplate.controllers;
 
-import jakarta.inject.Inject;
+import lombok.AllArgsConstructor;
+import lombok.NonNull;
 import vertxtemplate.services.AppServices;
 
+@AllArgsConstructor
 public class FilmController {
+    @NonNull
     private final AppServices appServices;
-
-    @Inject
-    public FilmController(AppServices appServices) {
-        this.appServices = appServices;
-    }
 }
