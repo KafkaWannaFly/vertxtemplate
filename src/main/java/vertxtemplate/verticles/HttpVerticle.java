@@ -2,16 +2,16 @@ package vertxtemplate.verticles;
 
 import io.vertx.core.Future;
 import io.vertx.core.VerticleBase;
+import lombok.AllArgsConstructor;
+import lombok.NonNull;
 import lombok.extern.java.Log;
 import vertxtemplate.configs.Config;
 
 @Log
+@AllArgsConstructor
 public class HttpVerticle extends VerticleBase {
+    @NonNull
     private final Config config;
-
-    public HttpVerticle(Config config) {
-        this.config = config;
-    }
 
     @Override
     public Future<?> start() {

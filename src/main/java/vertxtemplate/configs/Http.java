@@ -1,4 +1,7 @@
 package vertxtemplate.configs;
 
-public record Http(int port) {
+import lombok.NonNull;
+
+public record Http(@NonNull Integer port) {
+
 }
