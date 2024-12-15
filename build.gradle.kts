@@ -62,9 +62,15 @@ dependencies {
     testCompileOnly("org.projectlombok:lombok:$lombokVersion")
     testAnnotationProcessor("org.projectlombok:lombok:$lombokVersion")
 
-    liquibaseRuntime("org.liquibase:liquibase-core:4.30.0")
+    // Set up for 2 scopes: Gradlew commandline and programmatically migrate
+    val liquibase = "org.liquibase:liquibase-core:4.30.0"
+    liquibaseRuntime(liquibase)
+    implementation(liquibase)
+    val postgresql = "org.postgresql:postgresql:42.7.2"
+    liquibaseRuntime(postgresql)
+    implementation(postgresql)
+
     liquibaseRuntime("org.yaml:snakeyaml:2.3")
-    liquibaseRuntime("org.postgresql:postgresql:42.7.2")
     liquibaseRuntime("info.picocli:picocli:4.7.5")
 }
 

@@ -1,31 +1,66 @@
 package vertxtemplate;
 
 import io.vertx.core.Vertx;
+import liquibase.Contexts;
+import liquibase.Liquibase;
+import liquibase.database.DatabaseFactory;
+import liquibase.database.jvm.JdbcConnection;
+import liquibase.resource.ClassLoaderResourceAccessor;
+import lombok.SneakyThrows;
+import lombok.extern.java.Log;
 import org.apache.commons.lang3.ObjectUtils;
+import vertxtemplate.configs.Config;
 import vertxtemplate.di.AppModule;
 import vertxtemplate.di.DaggerIAppComponent;
 
+import java.sql.DriverManager;
+
+@Log
 public class AppLauncher {
     public static void main(String[] args) {
         var vertx = Vertx.vertx();
-        var appComponent =
-                DaggerIAppComponent.builder().appModule(new AppModule(vertx)).build();
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            if (vertx != null) {
+                vertx.close();
+            }
+        }));
 
-        var controllers = appComponent.appControllers();
-        if (ObjectUtils.anyNull(controllers.filmController())) {
-            throw new RuntimeException("Failed to load controllers");
+        try {
+            var appComponent =
+                    DaggerIAppComponent.builder().appModule(new AppModule(vertx)).build();
+
+            var controllers = appComponent.appControllers();
+            if (ObjectUtils.anyNull(controllers.filmController())) {
+                throw new RuntimeException("Failed to load controllers");
+            }
+
+            var services = appComponent.appServices();
+            if (ObjectUtils.anyNull(services.filmService())) {
+                throw new RuntimeException("Failed to load services");
+            }
+
+            var repositories = appComponent.appRepos();
+            if (ObjectUtils.anyNull(repositories.filmRepo())) {
+                throw new RuntimeException("Failed to load repositories");
+            }
+
+            runMigration(appComponent.config());
+
+            vertx.deployVerticle(appComponent.httpVerticle());
+        } catch (Exception e) {
+            log.severe(e.getMessage());
+            vertx.close();
         }
+    }
 
-        var services = appComponent.appServices();
-        if (ObjectUtils.anyNull(services.filmService())) {
-            throw new RuntimeException("Failed to load services");
-        }
+    @SneakyThrows
+    private static void runMigration(Config config) {
+        var connection = DriverManager.getConnection(config.db().url(), config.db().user(), config.db().password());
+        var changeLogFile = "db/changelog/master.yaml";
 
-        var repositories = appComponent.appRepos();
-        if (ObjectUtils.anyNull(repositories.filmRepo())) {
-            throw new RuntimeException("Failed to load repositories");
-        }
-
-        vertx.deployVerticle(appComponent.httpVerticle());
+        var database =
+                DatabaseFactory.getInstance().findCorrectDatabaseImplementation(new JdbcConnection(connection));
+        var liquibase = new Liquibase(changeLogFile, new ClassLoaderResourceAccessor(), database);
+        liquibase.update(new Contexts());
     }
 }
