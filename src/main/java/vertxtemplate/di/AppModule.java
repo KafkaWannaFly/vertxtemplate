@@ -2,11 +2,8 @@ package vertxtemplate.di;
 
 import dagger.Module;
 import dagger.Provides;
-import io.vertx.config.ConfigRetriever;
-import io.vertx.config.ConfigRetrieverOptions;
-import io.vertx.config.ConfigStoreOptions;
+import io.smallrye.config.SmallRyeConfigBuilder;
 import io.vertx.core.Vertx;
-import io.vertx.core.json.JsonObject;
 import vertxtemplate.configs.Config;
 import vertxtemplate.controllers.AppControllers;
 import vertxtemplate.controllers.FilmController;
@@ -63,17 +60,12 @@ public class AppModule {
 
     @Provides
     Config provideConfig() {
-        var fileStore = new ConfigStoreOptions()
-                .setType("file")
-                .setFormat("yaml")
-                .setConfig(new JsonObject().put("path", "src/main/resources/application.yaml"));
+        var smallRye = new SmallRyeConfigBuilder()
+                .addDiscoveredSources()
+                .addSystemSources()
+                .withMapping(Config.class)
+                .build();
 
-        var envStore = new ConfigStoreOptions().setType("env");
-
-        var options = new ConfigRetrieverOptions().addStore(fileStore).addStore(envStore);
-
-        var retriever = ConfigRetriever.create(vertx, options);
-
-        return retriever.getConfig().await().mapTo(Config.class);
+        return smallRye.getConfigMapping(Config.class);
     }
 }

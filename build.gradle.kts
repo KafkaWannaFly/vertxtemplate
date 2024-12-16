@@ -48,10 +48,11 @@ dependencies {
     implementation("jakarta.inject:jakarta.inject-api:2.0.1")
     implementation("com.google.dagger:dagger:2.53")
     annotationProcessor("com.google.dagger:dagger-compiler:2.53")
-    implementation("io.vertx:vertx-config:$vertxVersion")
-    implementation("io.vertx:vertx-config-yaml:$vertxVersion")
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.15.2")
     implementation("org.apache.commons:commons-lang3:3.17.0")
+
+    val smallRyeVersion = "3.10.2"
+    implementation("io.smallrye.config:smallrye-config:$smallRyeVersion")
+    implementation("io.smallrye.config:smallrye-config-source-yaml:$smallRyeVersion")
 
     testImplementation("io.vertx:vertx-junit5")
     testImplementation("org.junit.jupiter:junit-jupiter:$junitJupiterVersion")
@@ -125,7 +126,9 @@ liquibase {
             val yaml = Yaml()
             val inputStream = File("src/main/resources/application.yaml").inputStream()
             val config = yaml.load<Map<String, Any>>(inputStream)
-            val dbConfig = config["db"] as Map<*, *>
+
+            val app = config["app"] as Map<*, *>
+            val dbConfig = app["db"] as Map<*, *>
 
             val host = dbConfig["host"]
             val port = dbConfig["port"]

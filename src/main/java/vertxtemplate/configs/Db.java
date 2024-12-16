@@ -1,7 +1,9 @@
 package vertxtemplate.configs;
 
+import io.smallrye.config.ConfigMapping;
 import lombok.NonNull;
 
+@ConfigMapping(prefix = "db")
 public record Db(
         @NonNull String host,
         @NonNull String port,
