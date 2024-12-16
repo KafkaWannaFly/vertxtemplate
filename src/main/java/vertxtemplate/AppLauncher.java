@@ -7,14 +7,14 @@ import liquibase.database.DatabaseFactory;
 import liquibase.database.jvm.JdbcConnection;
 import liquibase.resource.ClassLoaderResourceAccessor;
 import lombok.SneakyThrows;
-import lombok.extern.java.Log;
+import lombok.extern.slf4j.Slf4j;
 import vertxtemplate.configs.Config;
 import vertxtemplate.di.AppModule;
 import vertxtemplate.di.DaggerIAppComponent;
 
 import java.sql.DriverManager;
 
-@Log
+@Slf4j
 public class AppLauncher {
     public static void main(String[] args) {
         var vertx = Vertx.vertx();
@@ -33,7 +33,7 @@ public class AppLauncher {
 
             vertx.deployVerticle(appComponent.httpVerticle());
         } catch (Exception e) {
-            log.severe(e.getMessage());
+            log.error("Error on starting application", e);
             vertx.close();
         }
     }

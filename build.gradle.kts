@@ -50,6 +50,13 @@ dependencies {
     annotationProcessor("com.google.dagger:dagger-compiler:2.53")
     implementation("org.apache.commons:commons-lang3:3.17.0")
 
+    implementation("org.slf4j:slf4j-api:2.0.16")
+    val log4jVersion = "2.24.3"
+    implementation("org.apache.logging.log4j:log4j-core:$log4jVersion")
+    implementation("org.apache.logging.log4j:log4j-slf4j2-impl:$log4jVersion")
+    implementation("org.apache.logging.log4j:log4j-api:$log4jVersion")
+
+
     val smallRyeVersion = "3.10.2"
     implementation("io.smallrye.config:smallrye-config:$smallRyeVersion")
     implementation("io.smallrye.config:smallrye-config-source-yaml:$smallRyeVersion")
