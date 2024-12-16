@@ -3,10 +3,6 @@ package vertxtemplate.configs;
 import io.smallrye.config.ConfigMapping;
 import lombok.NonNull;
 
-// @ConfigMapping
-// public record Config(@NonNull Http http, @NonNull Db db) {
-// }
-
 @ConfigMapping(prefix = "app")
 public interface Config {
     @NonNull
