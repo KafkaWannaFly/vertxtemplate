@@ -1,10 +1,9 @@
 package vertxtemplate.controllers;
 
 import jakarta.inject.Inject;
-import lombok.NonNull;
+import lombok.AllArgsConstructor;
 
-public record AppControllers(@NonNull FilmController filmController) {
-    @Inject
-    public AppControllers {
-    }
+@AllArgsConstructor(onConstructor_ = @Inject)
+public class AppControllers {
+    private final FilmController filmController;
 }

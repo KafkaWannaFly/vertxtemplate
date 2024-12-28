@@ -1,11 +1,12 @@
 package vertxtemplate.services;
 
+import jakarta.inject.Inject;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
-import vertxtemplate.repos.AppRepos;
+import vertxtemplate.repos.IFilmRepo;
 
-@AllArgsConstructor
+@AllArgsConstructor(onConstructor_ = @Inject)
 public class FilmService implements IFilmService {
     @NonNull
-    private final AppRepos appRepos;
+    private final IFilmRepo filmRepo;
 }

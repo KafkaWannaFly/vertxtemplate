@@ -3,26 +3,19 @@ package vertxtemplate.di;
 import dagger.Module;
 import dagger.Provides;
 import io.smallrye.config.SmallRyeConfigBuilder;
-import io.vertx.core.Vertx;
+import lombok.AllArgsConstructor;
 import vertxtemplate.configs.Config;
 import vertxtemplate.controllers.AppControllers;
 import vertxtemplate.controllers.FilmController;
-import vertxtemplate.repos.AppRepos;
 import vertxtemplate.repos.FilmRepo;
 import vertxtemplate.repos.IFilmRepo;
-import vertxtemplate.services.AppServices;
 import vertxtemplate.services.FilmService;
 import vertxtemplate.services.IFilmService;
 import vertxtemplate.verticles.HttpVerticle;
 
 @Module
+@AllArgsConstructor
 public class AppModule {
-    private final Vertx vertx;
-
-    public AppModule(Vertx vetx) {
-        this.vertx = vetx;
-    }
-
     @Provides
     HttpVerticle provideHttpVerticle(Config config) {
         return new HttpVerticle(config);
@@ -34,23 +27,13 @@ public class AppModule {
     }
 
     @Provides
-    AppRepos provideAppRepos(IFilmRepo filmRepo) {
-        return new AppRepos(filmRepo);
+    IFilmService provideFilmService(IFilmRepo filmRepo) {
+        return new FilmService(filmRepo);
     }
 
     @Provides
-    IFilmService provideFilmService(AppRepos appRepos) {
-        return new FilmService(appRepos);
-    }
-
-    @Provides
-    AppServices provideAppServices(IFilmService filmService) {
-        return new AppServices(filmService);
-    }
-
-    @Provides
-    FilmController provideFilmController(AppServices appServices) {
-        return new FilmController(appServices);
+    FilmController provideFilmController(IFilmService filmService) {
+        return new FilmController(filmService);
     }
 
     @Provides

@@ -25,9 +25,8 @@ public class AppLauncher {
         }));
 
         try {
-            var appComponent = DaggerIAppComponent.builder()
-                    .appModule(new AppModule(vertx))
-                    .build();
+            var appComponent =
+                    DaggerIAppComponent.builder().appModule(new AppModule()).build();
 
             runMigration(appComponent.config());
 

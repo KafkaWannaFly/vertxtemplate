@@ -7,8 +7,10 @@ import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import vertxtemplate.configs.Config;
 
+import javax.inject.Inject;
+
 @Slf4j
-@AllArgsConstructor
+@AllArgsConstructor(onConstructor_ = @__(@Inject))
 public class HttpVerticle extends VerticleBase {
     @NonNull
     private final Config config;
