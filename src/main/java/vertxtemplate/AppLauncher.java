@@ -20,6 +20,7 @@ public class AppLauncher {
         var vertx = Vertx.vertx();
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             if (vertx != null) {
+                log.info("Shutting down application");
                 vertx.close();
             }
         }));

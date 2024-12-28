@@ -1,9 +1,11 @@
 package vertxtemplate.controllers;
 
 import jakarta.inject.Inject;
-import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
-@AllArgsConstructor(onConstructor_ = @Inject)
+@RequiredArgsConstructor(onConstructor_ = @Inject)
+@Getter
 public class AppControllers {
     private final FilmController filmController;
 }

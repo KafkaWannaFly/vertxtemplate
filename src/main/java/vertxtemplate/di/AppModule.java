@@ -17,8 +17,8 @@ import vertxtemplate.verticles.HttpVerticle;
 @AllArgsConstructor
 public class AppModule {
     @Provides
-    HttpVerticle provideHttpVerticle(Config config) {
-        return new HttpVerticle(config);
+    HttpVerticle provideHttpVerticle(Config config, AppControllers appControllers) {
+        return new HttpVerticle(config, appControllers);
     }
 
     @Provides

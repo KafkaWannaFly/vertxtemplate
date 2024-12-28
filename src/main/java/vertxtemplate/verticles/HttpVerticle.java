@@ -2,21 +2,22 @@ package vertxtemplate.verticles;
 
 import io.vertx.core.Future;
 import io.vertx.core.VerticleBase;
-import lombok.AllArgsConstructor;
-import lombok.NonNull;
+import jakarta.inject.Inject;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import vertxtemplate.configs.Config;
-
-import javax.inject.Inject;
+import vertxtemplate.controllers.AppControllers;
 
 @Slf4j
-@AllArgsConstructor(onConstructor_ = @__(@Inject))
+@RequiredArgsConstructor(onConstructor_ = @Inject)
 public class HttpVerticle extends VerticleBase {
-    @NonNull
     private final Config config;
+    private final AppControllers appControllers;
 
     @Override
     public Future<?> start() {
+        assert appControllers.getFilmController() != null;
+
         return vertx.createHttpServer()
                 .requestHandler(req ->
                         req.response().putHeader("content-type", "text/plain").end("Hello from Vert.x!"))
