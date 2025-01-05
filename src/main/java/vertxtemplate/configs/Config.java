@@ -22,8 +22,7 @@ public interface Config {
         @NonNull
         String host();
 
-        @NonNull
-        String port();
+        int port();
 
         @NonNull
         String user();

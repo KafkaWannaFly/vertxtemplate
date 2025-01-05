@@ -3,7 +3,11 @@ package vertxtemplate.di;
 import dagger.Module;
 import dagger.Provides;
 import io.smallrye.config.SmallRyeConfigBuilder;
-import lombok.AllArgsConstructor;
+import io.vertx.core.Vertx;
+import io.vertx.pgclient.PgBuilder;
+import io.vertx.pgclient.impl.PgPoolOptions;
+import io.vertx.sqlclient.Pool;
+import lombok.RequiredArgsConstructor;
 import vertxtemplate.configs.Config;
 import vertxtemplate.controllers.AppControllers;
 import vertxtemplate.controllers.FilmController;
@@ -14,16 +18,18 @@ import vertxtemplate.services.IFilmService;
 import vertxtemplate.verticles.HttpVerticle;
 
 @Module
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class AppModule {
+    private final Vertx vertx;
+
     @Provides
     HttpVerticle provideHttpVerticle(Config config, AppControllers appControllers) {
         return new HttpVerticle(config, appControllers);
     }
 
     @Provides
-    IFilmRepo provideFilmRepo() {
-        return new FilmRepo();
+    IFilmRepo provideFilmRepo(Pool pool) {
+        return new FilmRepo(pool);
     }
 
     @Provides
@@ -50,5 +56,16 @@ public class AppModule {
                 .build();
 
         return smallRye.getConfigMapping(Config.class);
+    }
+
+    @Provides
+    Pool providePool(Config config) {
+        var pgPoolOptions = new PgPoolOptions().setMaxSize(10);
+
+        return PgBuilder.pool()
+                .with(pgPoolOptions)
+                .connectingTo(config.db().url())
+                .using(this.vertx)
+                .build();
     }
 }
