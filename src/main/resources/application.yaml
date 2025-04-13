@@ -4,6 +4,6 @@ app:
   db:
     host: localhost
     port: 5432
-    name: postgres
-    user: example
-    password: example
+    name: vertxtemplate
+    user: postgres
+    password: postgres

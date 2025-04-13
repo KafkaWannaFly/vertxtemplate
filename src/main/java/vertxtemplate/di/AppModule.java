@@ -7,6 +7,7 @@ import io.vertx.core.Vertx;
 import io.vertx.pgclient.PgBuilder;
 import io.vertx.pgclient.impl.PgPoolOptions;
 import io.vertx.sqlclient.Pool;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import vertxtemplate.configs.Config;
 import vertxtemplate.controllers.AppControllers;
@@ -18,6 +19,7 @@ import vertxtemplate.services.IFilmService;
 import vertxtemplate.verticles.HttpVerticle;
 
 @Module
+@NoArgsConstructor(force = true)
 @RequiredArgsConstructor
 public class AppModule {
     private final Vertx vertx;
