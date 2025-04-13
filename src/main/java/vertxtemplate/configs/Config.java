@@ -5,33 +5,26 @@ import lombok.NonNull;
 
 @ConfigMapping(prefix = "app")
 public interface Config {
-    @NonNull
-    Http http();
+    @NonNull Http http();
 
-    @NonNull
-    Db db();
+    @NonNull Db db();
 
     @ConfigMapping(prefix = "http")
     interface Http {
-        @NonNull
-        Integer port();
+        @NonNull Integer port();
     }
 
     @ConfigMapping(prefix = "db")
     interface Db {
-        @NonNull
-        String host();
+        @NonNull String host();
 
         int port();
 
-        @NonNull
-        String user();
+        @NonNull String user();
 
-        @NonNull
-        String password();
+        @NonNull String password();
 
-        @NonNull
-        String name();
+        @NonNull String name();
 
         default String url() {
             return String.format("jdbc:postgresql://%s:%s/%s", host(), port(), name());

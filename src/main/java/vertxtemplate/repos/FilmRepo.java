@@ -4,12 +4,18 @@ import io.vertx.core.Future;
 import io.vertx.sqlclient.Pool;
 import io.vertx.sqlclient.Row;
 import io.vertx.sqlclient.RowSet;
+import io.vertx.sqlclient.SqlResult;
 import io.vertx.sqlclient.Tuple;
+import io.vertx.sqlclient.templates.SqlTemplate;
 import jakarta.inject.Inject;
 import lombok.RequiredArgsConstructor;
 import vertxtemplate.models.requests.FilmCreation;
+import vertxtemplate.models.requests.FilmCreationParametersMapper;
+import vertxtemplate.models.responses.Film;
+import vertxtemplate.models.responses.FilmRowMapper;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -18,19 +24,16 @@ public class FilmRepo implements IFilmRepo {
     private final Pool pool;
 
     @Override
-    public Future<RowSet<Row>> insert(FilmCreation filmCreation) {
+    public Future<RowSet<Film>> insert(FilmCreation filmCreation) {
         var query =
                 """
                         insert into film (title, description, release_year, length, rating)
-                        values ($1, $2, $3, $4, $5)
+                        values (#{title}, #{description}, #{release_year}, #{length}, #{rating})
                         """;
-        return pool.preparedQuery(query)
-                .execute(Tuple.of(
-                        filmCreation.title(),
-                        filmCreation.description(),
-                        filmCreation.releaseYear(),
-                        filmCreation.length(),
-                        filmCreation.rating()));
+        return SqlTemplate.forQuery(pool, query)
+                .mapFrom(FilmCreationParametersMapper.INSTANCE)
+                .mapTo(FilmRowMapper.INSTANCE)
+                .execute(filmCreation);
     }
 
     @Override
@@ -44,41 +47,47 @@ public class FilmRepo implements IFilmRepo {
         var query = "INSERT INTO film (title, description, release_year, length, rating) VALUES " + placeholders;
 
         var params = films.stream()
-                .flatMap(film ->
-                        Stream.of(film.title(), film.description(), film.releaseYear(), film.length(), film.rating()))
+                .flatMap(film -> Stream.of(
+                        film.getTitle(),
+                        film.getDescription(),
+                        film.getReleaseYear(),
+                        film.getLength(),
+                        film.getRating()))
                 .collect(Collectors.toList());
 
         return pool.preparedQuery(query).execute(Tuple.from(params));
     }
 
     @Override
-    public Future<RowSet<Row>> getAll() {
+    public Future<SqlResult<List<Film>>> getAll() {
         var query = """
                 select *
                 from film
                 """;
-        return pool.query(query).execute();
+        return SqlTemplate.forQuery(pool, query)
+                .collecting(FilmRowMapper.COLLECTOR)
+                .execute(Map.of());
     }
 
     @Override
-    public Future<RowSet<Row>> getById(int id) {
+    public Future<RowSet<Film>> getById(int id) {
         var query =
                 """
                         select *
                         from film
-                        where id = $1
+                        where id = #{id}
                         """;
-        return pool.preparedQuery(query).execute(Tuple.of(id));
+        return SqlTemplate.forQuery(pool, query).mapTo(FilmRowMapper.INSTANCE).execute(Map.of("id", id));
     }
 
     @Override
-    public Future<RowSet<Row>> getByTitle(String title) {
+    public Future<RowSet<Film>> getByTitle(String title) {
         var query =
                 """
                         select *
                         from film
-                        where title ilike $1
+                        where title ilike '%#{title}%'
                         """;
-        return pool.preparedQuery(query).execute(Tuple.of("%" + title + "%"));
+        return SqlTemplate.forQuery(pool, query).mapTo(FilmRowMapper.INSTANCE).execute(Map.of("title", title));
     }
 }

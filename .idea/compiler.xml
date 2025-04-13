@@ -6,7 +6,16 @@
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.36/5a30490a6e14977d97d9c73c924c1f1b5311ea95/lombok-1.18.36.jar" />
+        </processorPath>
+        <module name="vertxtemplate.test" />
+      </profile>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.dagger/dagger-compiler/2.53/417b9ccf8883009f368d2f93eb5b5a6e69b2618e/dagger-compiler-2.53.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.vertx/vertx-codegen/5.0.0.CR2/2f8bc542921494495640cc45e09e4a814fab2357/vertx-codegen-5.0.0.CR2-processor.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.vertx/vertx-sql-client-templates/5.0.0.CR2/f5955e48bbc6220c010f15e401242d51a023bb17/vertx-sql-client-templates-5.0.0.CR2.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.36/5a30490a6e14977d97d9c73c924c1f1b5311ea95/lombok-1.18.36.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.dagger/dagger-spi/2.53/87d736f504a72a14bb617e546546273589c43c07/dagger-spi-2.53.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.dagger/dagger/2.53/e19cc0e0451ed350ac518af151b81501fe057c7f/dagger-2.53.jar" />
@@ -24,6 +33,9 @@
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-reflect/1.6.10/1cbe9c92c12a94eea200d23c2bbaedaf3daf5132/kotlin-reflect-1.6.10.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk7/1.9.0/f320478990d05e0cfaadd74f9619fd6027adbf37/kotlin-stdlib-jdk7-1.9.0.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/2.0.0-Beta5/763714203113a7f4a5477122be0c6c588df0116e/kotlin-stdlib-2.0.0-Beta5.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.vertx/vertx-codegen-json/5.0.0.CR2/1b392a9b61cd3322b6c94c8a8aef627b16611077/vertx-codegen-json-5.0.0.CR2.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.vertx/vertx-codegen-processor/5.0.0.CR2/dc05b8201b90677aac41bd7efd5e2d03ed03c072/vertx-codegen-processor-5.0.0.CR2.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.vertx/vertx-sql-client/5.0.0.CR2/fa7dbc3eb9f46f14651da9cf951677b6e5f55a99/vertx-sql-client-5.0.0.CR2.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/jakarta.inject/jakarta.inject-api/2.0.1/4c28afe1991a941d7702fe1362c365f0a8641d1e/jakarta.inject-api-2.0.1.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jspecify/jspecify/1.0.0/7425a601c1c7ec76645a78d22b8c6a627edee507/jspecify-1.0.0.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.errorprone/javac-shaded/9-dev-r4023-3/72b688efd290280a0afde5f9892b0fde6f362d1d/javac-shaded-9-dev-r4023-3.jar" />
@@ -31,15 +43,29 @@
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.checkerframework/checker-qual/3.41.0/8be6df7f1e9bccb19f8f351b3651f0bac2f5e0c/checker-qual-3.41.0.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.errorprone/error_prone_annotations/2.23.0/43a27853b6c7d54893e0b1997c2c778c347179eb/error_prone_annotations-2.23.0.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/13.0/919f0dfe192fb4e063e7dacadee7f8bb9a2672a9/annotations-13.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.vertx/vertx-codegen-api/5.0.0.CR2/e8cf81ed5000d6de77db0bbeefc28308a992cd85/vertx-codegen-api-5.0.0.CR2.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.vertx/vertx-core/5.0.0.CR2/ea123e20e07c133869057d4dc5d7a43369d36134/vertx-core-5.0.0.CR2.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.vertx/vertx-core-logging/5.0.0.CR2/82ebf95eedbe01e3cf7f8661df5827a9dbeef347/vertx-core-logging-5.0.0.CR2.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-handler-proxy/4.2.0.Beta1/1b70652c13a5de0fb53d8d2d7f669ee21b9969fa/netty-handler-proxy-4.2.0.Beta1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec-http2/4.2.0.Beta1/91661629635690ed4bea7f8daab78a1905acc905/netty-codec-http2-4.2.0.Beta1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec-http/4.2.0.Beta1/1ccf64ac9fbca614d7683cd2d0d84a618db0b9de/netty-codec-http-4.2.0.Beta1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-resolver-dns/4.2.0.Beta1/3b642b76679b1674e2dec2314119708658f94f2f/netty-resolver-dns-4.2.0.Beta1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-handler/4.2.0.Beta1/a968edcfd6e7df364a3ba923b507cfe1d53b494f/netty-handler-4.2.0.Beta1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-native-unix-common/4.2.0.Beta1/4e47503704eaf56b04f6a7ffb1a61531c3aa1270/netty-transport-native-unix-common-4.2.0.Beta1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec-socks/4.2.0.Beta1/e4ca51944913c2b3936947c6aabd5b32ba0f51d7/netty-codec-socks-4.2.0.Beta1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec-dns/4.2.0.Beta1/52c29dbf3920bde2d82a460e903b74ec3103ec33/netty-codec-dns-4.2.0.Beta1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec/4.2.0.Beta1/2385f21d0344ddf60acb50b671b29b645d6eae6d/netty-codec-4.2.0.Beta1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec-compression/4.2.0.Beta1/1106deda06c5566603ff125b1e441001a201910f/netty-codec-compression-4.2.0.Beta1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec-protobuf/4.2.0.Beta1/748e9a443e5648172f1547eb8080f103ebc9d6ac/netty-codec-protobuf-4.2.0.Beta1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec-marshalling/4.2.0.Beta1/4763fc0db6d77e8bf23268d5e665ae623cfaba8f/netty-codec-marshalling-4.2.0.Beta1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec-base/4.2.0.Beta1/a50dcb5d52a6e0f6eecba56272d9725b662c80e5/netty-codec-base-4.2.0.Beta1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport/4.2.0.Beta1/23088871ca4f10227bd46da4f8dc7aa8d3629d56/netty-transport-4.2.0.Beta1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-buffer/4.2.0.Beta1/f1fc698fa34c93e9125727a087e8b6791f91faad/netty-buffer-4.2.0.Beta1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-resolver/4.2.0.Beta1/af7ea597ec0e498753aec1375f73aaaa4391b059/netty-resolver-4.2.0.Beta1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-common/4.2.0.Beta1/401c4b14bd54d39a16fa2a3dfb67204325ceb536/netty-common-4.2.0.Beta1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.16.1/9456bb3cdd0f79f91a5f730a1b1bb041a380c91f/jackson-core-2.16.1.jar" />
         </processorPath>
         <module name="vertxtemplate.main" />
-      </profile>
-      <profile name="Gradle Imported" enabled="true">
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.36/5a30490a6e14977d97d9c73c924c1f1b5311ea95/lombok-1.18.36.jar" />
-        </processorPath>
-        <module name="vertxtemplate.test" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="21" />

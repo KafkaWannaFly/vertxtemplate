@@ -50,6 +50,11 @@ dependencies {
     annotationProcessor("com.google.dagger:dagger-compiler:2.53")
     implementation("org.apache.commons:commons-lang3:3.17.0")
 
+    annotationProcessor("io.vertx:vertx-codegen:$vertxVersion:processor")
+    annotationProcessor("io.vertx:vertx-sql-client-templates:$vertxVersion")
+    implementation("io.vertx:vertx-codegen:$vertxVersion")
+    implementation("io.vertx:vertx-sql-client-templates:$vertxVersion")
+
     implementation("org.slf4j:slf4j-api:2.0.16")
     val log4jVersion = "2.24.3"
     implementation("org.apache.logging.log4j:log4j-core:$log4jVersion")
