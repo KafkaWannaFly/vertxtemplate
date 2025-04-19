@@ -14,7 +14,7 @@ public class FilmService implements IFilmService {
     private final IFilmRepo filmRepo;
 
     @Override
-    public Future<SqlResult<List<Film>>> getAll() {
-        return filmRepo.getAll();
+    public Future<List<Film>> getAll() {
+        return filmRepo.getAll().map(SqlResult::value);
     }
 }

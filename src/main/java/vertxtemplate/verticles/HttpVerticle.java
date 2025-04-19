@@ -19,8 +19,6 @@ public class HttpVerticle extends VerticleBase {
 
     @Override
     public Future<?> start() {
-        assert appControllers.getFilmController() != null;
-
         return vertx.createHttpServer()
                 .requestHandler(buildRouter())
                 .listen(config.http().port())
@@ -62,7 +60,6 @@ public class HttpVerticle extends VerticleBase {
             }
         });
 
-        // Logging middleware
         router.route().handler(ctx -> {
             String method = ctx.request().method().name();
             String path = ctx.request().uri();
@@ -82,7 +79,6 @@ public class HttpVerticle extends VerticleBase {
             ctx.next();
         });
 
-        // Error handling middleware
         router.route().failureHandler(ctx -> {
             int statusCode = ctx.statusCode() > 0 ? ctx.statusCode() : 500;
             Throwable failure = ctx.failure();
@@ -94,7 +90,7 @@ public class HttpVerticle extends VerticleBase {
             ctx.response()
                     .setStatusCode(statusCode)
                     .end(Json.encodePrettily(java.util.Map.of(
-                            "error", failure != null ? failure.getMessage() : "Unknown error", "status", statusCode)));
+                            "error", failure != null ? failure.getMessage() : "Unknown error")));
         });
     }
 }
