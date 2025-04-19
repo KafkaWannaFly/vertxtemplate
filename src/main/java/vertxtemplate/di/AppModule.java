@@ -5,7 +5,7 @@ import dagger.Provides;
 import io.smallrye.config.SmallRyeConfigBuilder;
 import io.vertx.core.Vertx;
 import io.vertx.pgclient.PgBuilder;
-import io.vertx.pgclient.impl.PgPoolOptions;
+import io.vertx.pgclient.PgConnectOptions;
 import io.vertx.sqlclient.Pool;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -62,12 +62,13 @@ public class AppModule {
 
     @Provides
     Pool providePool(Config config) {
-        var pgPoolOptions = new PgPoolOptions().setMaxSize(10);
+        var connectOptions = new PgConnectOptions()
+                .setHost(config.db().host())
+                .setPort(config.db().port())
+                .setDatabase(config.db().name())
+                .setUser(config.db().user())
+                .setPassword(config.db().password());
 
-        return PgBuilder.pool()
-                .with(pgPoolOptions)
-                .connectingTo(config.db().url())
-                .using(this.vertx)
-                .build();
+        return PgBuilder.pool().connectingTo(connectOptions).using(this.vertx).build();
     }
 }

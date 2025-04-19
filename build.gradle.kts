@@ -25,29 +25,30 @@ repositories {
     mavenCentral()
 }
 
-val vertxVersion = "5.0.0.CR2"
-val junitJupiterVersion = "5.9.1"
-val lombokVersion = "1.18.36"
 
 val mainVerticleName = "vertxtemplate.verticles.MainVerticle"
 val launcherClassName = "vertxtemplate.AppLauncher"
-
-val watchForChange = "src/**/*"
-val doOnChange = "${projectDir}/gradlew classes"
 
 application {
     mainClass.set(launcherClassName)
 }
 
 dependencies {
+    val vertxVersion = "5.0.0.CR6"
+    val junitJupiterVersion = "5.9.1"
+    val lombokVersion = "1.18.36"
+    val daggerVersion = "2.53"
+    val log4jVersion = "2.24.3"
+
+
     implementation(platform("io.vertx:vertx-stack-depchain:$vertxVersion"))
-    implementation("io.vertx:vertx-auth-jwt")
-    implementation("io.vertx:vertx-web")
-    implementation("io.vertx:vertx-pg-client")
-    implementation("com.ongres.scram:client:2.1")
+    implementation("io.vertx:vertx-auth-jwt:$vertxVersion")
+    implementation("io.vertx:vertx-web:$vertxVersion")
+    implementation("io.vertx:vertx-pg-client:$vertxVersion")
+    implementation("com.ongres.scram:scram-client:3.1")
     implementation("jakarta.inject:jakarta.inject-api:2.0.1")
-    implementation("com.google.dagger:dagger:2.53")
-    annotationProcessor("com.google.dagger:dagger-compiler:2.53")
+    implementation("com.google.dagger:dagger:$daggerVersion")
+    annotationProcessor("com.google.dagger:dagger-compiler:$daggerVersion")
     implementation("org.apache.commons:commons-lang3:3.17.0")
 
     annotationProcessor("io.vertx:vertx-codegen:$vertxVersion:processor")
@@ -56,7 +57,6 @@ dependencies {
     implementation("io.vertx:vertx-sql-client-templates:$vertxVersion")
 
     implementation("org.slf4j:slf4j-api:2.0.16")
-    val log4jVersion = "2.24.3"
     implementation("org.apache.logging.log4j:log4j-core:$log4jVersion")
     implementation("org.apache.logging.log4j:log4j-slf4j2-impl:$log4jVersion")
     implementation("org.apache.logging.log4j:log4j-api:$log4jVersion")
