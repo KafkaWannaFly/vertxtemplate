@@ -1,13 +1,14 @@
 package vertxtemplate.models.requests;
 
 import io.vertx.codegen.annotations.DataObject;
-import io.vertx.codegen.format.SnakeCase;
 import io.vertx.sqlclient.templates.annotations.ParametersMapped;
+import io.vertx.sqlclient.templates.annotations.RowMapped;
 import lombok.Data;
 
-@Data
 @DataObject
-@ParametersMapped(formatter = SnakeCase.class)
+@ParametersMapped
+@RowMapped
+@Data
 public class FilmCreation {
     private String title;
     private String description;

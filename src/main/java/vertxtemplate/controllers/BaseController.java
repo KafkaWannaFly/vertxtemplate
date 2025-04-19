@@ -13,8 +13,7 @@ public class BaseController {
     protected <T> void handleResponse(RoutingContext ctx, Future<T> future) {
         future.onSuccess(result -> ctx.response()
                 .end(Json.encodePrettily(new BaseResponse(result)))
-                .onFailure(err -> ctx.response()
-                        .setStatusCode(500)
-                        .end(Json.encodePrettily(Map.of("error", err.getMessage())))));
+                .onFailure(err ->
+                        ctx.response().setStatusCode(500).end(Json.encodePrettily(Map.of("error", err.getMessage())))));
     }
 }

@@ -10,7 +10,7 @@ import vertxtemplate.models.responses.Film;
 import java.util.List;
 
 public interface IFilmRepo {
-    Future<RowSet<Film>> insert(FilmCreation filmCreation);
+    Future<SqlResult<Void>> insert(FilmCreation filmCreation);
 
     Future<RowSet<Row>> insertMany(List<FilmCreation> films);
 

@@ -9,6 +9,7 @@ import io.vertx.sqlclient.Tuple;
 import io.vertx.sqlclient.templates.SqlTemplate;
 import jakarta.inject.Inject;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import vertxtemplate.models.requests.FilmCreation;
 import vertxtemplate.models.requests.FilmCreationParametersMapper;
 import vertxtemplate.models.responses.Film;
@@ -19,20 +20,20 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+@Slf4j
 @RequiredArgsConstructor(onConstructor_ = @Inject)
 public class FilmRepo implements IFilmRepo {
     private final Pool pool;
 
     @Override
-    public Future<RowSet<Film>> insert(FilmCreation filmCreation) {
+    public Future<SqlResult<Void>> insert(FilmCreation filmCreation) {
         var query =
                 """
                         insert into film (title, description, release_year, length, rating)
-                        values (#{title}, #{description}, #{release_year}, #{length}, #{rating})
+                        values (#{title}, #{description}, #{releaseYear}, #{length}, #{rating})
                         """;
-        return SqlTemplate.forQuery(pool, query)
+        return SqlTemplate.forUpdate(pool, query)
                 .mapFrom(FilmCreationParametersMapper.INSTANCE)
-                .mapTo(FilmRowMapper.INSTANCE)
                 .execute(filmCreation);
     }
 

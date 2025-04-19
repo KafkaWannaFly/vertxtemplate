@@ -13,10 +13,13 @@
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.dagger/dagger-compiler/2.53/417b9ccf8883009f368d2f93eb5b5a6e69b2618e/dagger-compiler-2.53.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.vertx/vertx-codegen/5.0.0.CR6/8351cf55fb4ab6eb145724049d6c16e79145bcf/vertx-codegen-5.0.0.CR6-processor.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.vertx/vertx-sql-client-templates/5.0.0.CR6/9423b25776beaaf03126ca7cd9b6d2cfe3a9ec7f/vertx-sql-client-templates-5.0.0.CR6.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.36/5a30490a6e14977d97d9c73c924c1f1b5311ea95/lombok-1.18.36.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.vertx/vertx-sql-client-templates/5.0.0.CR6/9423b25776beaaf03126ca7cd9b6d2cfe3a9ec7f/vertx-sql-client-templates-5.0.0.CR6.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.vertx/vertx-codegen/5.0.0.CR6/8351cf55fb4ab6eb145724049d6c16e79145bcf/vertx-codegen-5.0.0.CR6-processor.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.dagger/dagger-compiler/2.53/417b9ccf8883009f368d2f93eb5b5a6e69b2618e/dagger-compiler-2.53.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.vertx/vertx-sql-client/5.0.0.CR6/c0155831cf647a0e42694c149206acc879c9e5d7/vertx-sql-client-5.0.0.CR6.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.vertx/vertx-codegen-json/5.0.0.CR6/b19668de15abad32bc48a212e2aaa3578bf7e8d4/vertx-codegen-json-5.0.0.CR6.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.vertx/vertx-codegen-processor/5.0.0.CR6/2efae698325dce0aa73734afb0f6e4b3c16e4ed3/vertx-codegen-processor-5.0.0.CR6.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.dagger/dagger-spi/2.53/87d736f504a72a14bb617e546546273589c43c07/dagger-spi-2.53.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.dagger/dagger/2.53/e19cc0e0451ed350ac518af151b81501fe057c7f/dagger-2.53.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.googlejavaformat/google-java-format/1.5/fba7f130d29061d2d2ea384b4880c10cae92ef73/google-java-format-1.5.jar" />
@@ -33,9 +36,8 @@
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-reflect/1.6.10/1cbe9c92c12a94eea200d23c2bbaedaf3daf5132/kotlin-reflect-1.6.10.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk7/1.9.0/f320478990d05e0cfaadd74f9619fd6027adbf37/kotlin-stdlib-jdk7-1.9.0.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/2.0.0-Beta5/763714203113a7f4a5477122be0c6c588df0116e/kotlin-stdlib-2.0.0-Beta5.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.vertx/vertx-codegen-json/5.0.0.CR6/b19668de15abad32bc48a212e2aaa3578bf7e8d4/vertx-codegen-json-5.0.0.CR6.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.vertx/vertx-codegen-processor/5.0.0.CR6/2efae698325dce0aa73734afb0f6e4b3c16e4ed3/vertx-codegen-processor-5.0.0.CR6.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.vertx/vertx-sql-client/5.0.0.CR6/c0155831cf647a0e42694c149206acc879c9e5d7/vertx-sql-client-5.0.0.CR6.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.vertx/vertx-core/5.0.0.CR6/9c4d139ec7d28732020066a8b748c0d49d264d9b/vertx-core-5.0.0.CR6.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.vertx/vertx-codegen-api/5.0.0.CR6/ae4d122f090e110bf64e9fc2ceaff8f25e3dde72/vertx-codegen-api-5.0.0.CR6.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/jakarta.inject/jakarta.inject-api/2.0.1/4c28afe1991a941d7702fe1362c365f0a8641d1e/jakarta.inject-api-2.0.1.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jspecify/jspecify/1.0.0/7425a601c1c7ec76645a78d22b8c6a627edee507/jspecify-1.0.0.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.errorprone/javac-shaded/9-dev-r4023-3/72b688efd290280a0afde5f9892b0fde6f362d1d/javac-shaded-9-dev-r4023-3.jar" />
@@ -43,8 +45,6 @@
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.checkerframework/checker-qual/3.41.0/8be6df7f1e9bccb19f8f351b3651f0bac2f5e0c/checker-qual-3.41.0.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.errorprone/error_prone_annotations/2.23.0/43a27853b6c7d54893e0b1997c2c778c347179eb/error_prone_annotations-2.23.0.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/13.0/919f0dfe192fb4e063e7dacadee7f8bb9a2672a9/annotations-13.0.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.vertx/vertx-codegen-api/5.0.0.CR6/ae4d122f090e110bf64e9fc2ceaff8f25e3dde72/vertx-codegen-api-5.0.0.CR6.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.vertx/vertx-core/5.0.0.CR6/9c4d139ec7d28732020066a8b748c0d49d264d9b/vertx-core-5.0.0.CR6.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.vertx/vertx-core-logging/5.0.0.CR6/1e75dc14ef13103b589d91c453840f994dfc8c0f/vertx-core-logging-5.0.0.CR6.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-handler-proxy/4.2.0.Final/5ef7a61b606e30b41b3237e4f1ef03a634132551/netty-handler-proxy-4.2.0.Final.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec-http2/4.2.0.Final/d5933380399a618a03d9e9bdd3f42c5c86e8f090/netty-codec-http2-4.2.0.Final.jar" />

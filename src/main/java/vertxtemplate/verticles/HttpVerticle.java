@@ -33,6 +33,7 @@ public class HttpVerticle extends VerticleBase {
 
         Router filmRouter = Router.router(vertx);
         filmRouter.get("/").handler(appControllers.getFilmController()::getAll);
+        filmRouter.post("/").handler(appControllers.getFilmController()::insert);
 
         apiRouter.route("/films/*").subRouter(filmRouter);
         mainRouter.route("/api/*").subRouter(apiRouter);
@@ -89,8 +90,8 @@ public class HttpVerticle extends VerticleBase {
 
             ctx.response()
                     .setStatusCode(statusCode)
-                    .end(Json.encodePrettily(java.util.Map.of(
-                            "error", failure != null ? failure.getMessage() : "Unknown error")));
+                    .end(Json.encodePrettily(
+                            java.util.Map.of("error", failure != null ? failure.getMessage() : "Unknown error")));
         });
     }
 }

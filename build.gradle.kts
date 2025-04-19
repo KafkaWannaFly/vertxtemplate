@@ -34,6 +34,13 @@ application {
 }
 
 dependencies {
+    val lombokVersion = "1.18.36"
+    compileOnly("org.projectlombok:lombok:$lombokVersion")
+    annotationProcessor("org.projectlombok:lombok:$lombokVersion")
+
+    testCompileOnly("org.projectlombok:lombok:$lombokVersion")
+    testAnnotationProcessor("org.projectlombok:lombok:$lombokVersion")
+
     val vertxVersion = "5.0.0.CR6"
     implementation(platform("io.vertx:vertx-stack-depchain:$vertxVersion"))
     implementation("io.vertx:vertx-auth-jwt:$vertxVersion")
@@ -41,15 +48,16 @@ dependencies {
     implementation("io.vertx:vertx-pg-client:$vertxVersion")
     implementation("com.ongres.scram:scram-client:3.1")
     implementation("jakarta.inject:jakarta.inject-api:2.0.1")
+
+    implementation("io.vertx:vertx-codegen:$vertxVersion")
+    implementation("io.vertx:vertx-sql-client-templates:$vertxVersion")
+    annotationProcessor("io.vertx:vertx-sql-client-templates:$vertxVersion")
+    annotationProcessor("io.vertx:vertx-codegen:$vertxVersion:processor")
+
     val daggerVersion = "2.53"
     implementation("com.google.dagger:dagger:$daggerVersion")
     annotationProcessor("com.google.dagger:dagger-compiler:$daggerVersion")
     implementation("org.apache.commons:commons-lang3:3.17.0")
-
-    annotationProcessor("io.vertx:vertx-codegen:$vertxVersion:processor")
-    annotationProcessor("io.vertx:vertx-sql-client-templates:$vertxVersion")
-    implementation("io.vertx:vertx-codegen:$vertxVersion")
-    implementation("io.vertx:vertx-sql-client-templates:$vertxVersion")
 
     val log4jVersion = "2.24.3"
     implementation("org.slf4j:slf4j-api:2.0.16")
@@ -64,13 +72,6 @@ dependencies {
     val junitJupiterVersion = "5.9.1"
     testImplementation("io.vertx:vertx-junit5")
     testImplementation("org.junit.jupiter:junit-jupiter:$junitJupiterVersion")
-
-    val lombokVersion = "1.18.36"
-    compileOnly("org.projectlombok:lombok:$lombokVersion")
-    annotationProcessor("org.projectlombok:lombok:$lombokVersion")
-
-    testCompileOnly("org.projectlombok:lombok:$lombokVersion")
-    testAnnotationProcessor("org.projectlombok:lombok:$lombokVersion")
 
     val jacksonVersion = "2.18.3"
     implementation("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
