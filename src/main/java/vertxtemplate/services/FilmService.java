@@ -23,4 +23,9 @@ public class FilmService implements IFilmService {
     public Future<SqlResult<Void>> insert(FilmCreation filmCreation) {
         return filmRepo.insert(filmCreation);
     }
+
+    @Override
+    public Future<Film> getById(Integer id) {
+        return filmRepo.getById(id).map(films -> films.iterator().next());
+    }
 }

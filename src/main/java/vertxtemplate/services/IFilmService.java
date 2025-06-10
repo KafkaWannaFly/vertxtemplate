@@ -11,4 +11,6 @@ public interface IFilmService {
     Future<List<Film>> getAll();
 
     Future<SqlResult<Void>> insert(FilmCreation filmCreation);
+
+    Future<Film> getById(Integer id);
 }

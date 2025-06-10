@@ -17,4 +17,9 @@ public class FilmController extends BaseController {
         var film = ctx.body().asJsonObject().mapTo(FilmCreation.class);
         super.handleResponse(ctx, filmService.insert(film));
     }
+
+    public void getById(RoutingContext ctx) {
+        var id = Integer.parseInt(ctx.pathParam("id"));
+        super.handleResponse(ctx, filmService.getById(id));
+    }
 }
