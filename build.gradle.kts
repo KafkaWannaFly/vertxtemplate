@@ -41,7 +41,7 @@ dependencies {
     testCompileOnly("org.projectlombok:lombok:$lombokVersion")
     testAnnotationProcessor("org.projectlombok:lombok:$lombokVersion")
 
-    val vertxVersion = "5.0.0.CR6"
+    val vertxVersion = "5.0.0.CR8"
     implementation(platform("io.vertx:vertx-stack-depchain:$vertxVersion"))
     implementation("io.vertx:vertx-auth-jwt:$vertxVersion")
     implementation("io.vertx:vertx-web:$vertxVersion")
