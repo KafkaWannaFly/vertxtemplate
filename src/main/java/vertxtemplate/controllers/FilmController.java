@@ -18,6 +18,12 @@ public class FilmController extends BaseController {
         super.handleResponse(ctx, filmService.insert(film));
     }
 
+    public void insertMany(RoutingContext ctx) {
+        var films =
+                ctx.body().asJsonArray().stream().map(FilmCreation::fromJson).toList();
+        super.handleResponse(ctx, filmService.insertMany(films));
+    }
+
     public void getById(RoutingContext ctx) {
         var id = Integer.parseInt(ctx.pathParam("id"));
         super.handleResponse(ctx, filmService.getById(id));

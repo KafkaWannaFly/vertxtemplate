@@ -25,6 +25,11 @@ public class FilmService implements IFilmService {
     }
 
     @Override
+    public Future<SqlResult<Void>> insertMany(List<FilmCreation> filmCreations) {
+        return filmRepo.insertMany(filmCreations);
+    }
+
+    @Override
     public Future<Film> getById(Integer id) {
         return filmRepo.getById(id).map(films -> films.iterator().next());
     }

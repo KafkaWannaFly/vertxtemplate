@@ -2,10 +2,8 @@ package vertxtemplate.repos;
 
 import io.vertx.core.Future;
 import io.vertx.sqlclient.Pool;
-import io.vertx.sqlclient.Row;
 import io.vertx.sqlclient.RowSet;
 import io.vertx.sqlclient.SqlResult;
-import io.vertx.sqlclient.Tuple;
 import io.vertx.sqlclient.templates.SqlTemplate;
 import jakarta.inject.Inject;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +16,6 @@ import vertxtemplate.models.responses.FilmRowMapper;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Slf4j
 @RequiredArgsConstructor(onConstructor_ = @Inject)
@@ -38,25 +35,21 @@ public class FilmRepo implements IFilmRepo {
     }
 
     @Override
-    public Future<RowSet<Row>> insertMany(List<FilmCreation> films) {
+    public Future<SqlResult<Void>> insertMany(List<FilmCreation> films) {
         if (films.isEmpty()) {
             return Future.failedFuture("No films to insert.");
         }
 
-        var placeholders = films.stream().map(film -> "(?, ?, ?, ?, ?)").collect(Collectors.joining(", "));
+        var query =
+                """
+                insert into film (title, description, release_year, length, rating)
+                values (#{title}, #{description}, #{releaseYear}, #{length}, #{rating})
+                """;
 
-        var query = "INSERT INTO film (title, description, release_year, length, rating) VALUES " + placeholders;
+        var paramMaps =
+                films.stream().map(FilmCreationParametersMapper.INSTANCE::map).collect(Collectors.toList());
 
-        var params = films.stream()
-                .flatMap(film -> Stream.of(
-                        film.getTitle(),
-                        film.getDescription(),
-                        film.getReleaseYear(),
-                        film.getLength(),
-                        film.getRating()))
-                .collect(Collectors.toList());
-
-        return pool.preparedQuery(query).execute(Tuple.from(params));
+        return SqlTemplate.forUpdate(pool, query).executeBatch(paramMaps).map(batchResult -> batchResult);
     }
 
     @Override
