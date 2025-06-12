@@ -17,5 +17,5 @@ public interface IFilmRepo {
 
     Future<RowSet<Film>> getById(int id);
 
-    Future<RowSet<Film>> getByTitle(String title);
+    Future<SqlResult<List<Film>>> getByTitle(String title);
 }

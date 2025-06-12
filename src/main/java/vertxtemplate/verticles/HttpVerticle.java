@@ -33,6 +33,7 @@ public class HttpVerticle extends VerticleBase {
 
         Router filmRouter = Router.router(vertx);
         filmRouter.get("/").handler(appControllers.getFilmController()::getAll);
+        filmRouter.get("/q").handler(appControllers.getFilmController()::getByTitle);
         filmRouter.post("/").handler(appControllers.getFilmController()::insert);
         filmRouter.post("/bulk").handler(appControllers.getFilmController()::insertMany);
         filmRouter.get("/:id").handler(appControllers.getFilmController()::getById);

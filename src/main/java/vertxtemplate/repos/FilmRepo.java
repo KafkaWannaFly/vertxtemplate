@@ -42,9 +42,9 @@ public class FilmRepo implements IFilmRepo {
 
         var query =
                 """
-                insert into film (title, description, release_year, length, rating)
-                values (#{title}, #{description}, #{releaseYear}, #{length}, #{rating})
-                """;
+                        insert into film (title, description, release_year, length, rating)
+                        values (#{title}, #{description}, #{releaseYear}, #{length}, #{rating})
+                        """;
 
         var paramMaps =
                 films.stream().map(FilmCreationParametersMapper.INSTANCE::map).collect(Collectors.toList());
@@ -75,13 +75,15 @@ public class FilmRepo implements IFilmRepo {
     }
 
     @Override
-    public Future<RowSet<Film>> getByTitle(String title) {
+    public Future<SqlResult<List<Film>>> getByTitle(String title) {
         var query =
                 """
                         select *
                         from film
-                        where title ilike '%#{title}%'
+                        where title ilike #{title}
                         """;
-        return SqlTemplate.forQuery(pool, query).mapTo(FilmRowMapper.INSTANCE).execute(Map.of("title", title));
+        return SqlTemplate.forQuery(pool, query)
+                .collecting(FilmRowMapper.COLLECTOR)
+                .execute(Map.of("title", String.format("%%%s%%", title)));
     }
 }

@@ -28,4 +28,9 @@ public class FilmController extends BaseController {
         var id = Integer.parseInt(ctx.pathParam("id"));
         super.handleResponse(ctx, filmService.getById(id));
     }
+
+    public void getByTitle(RoutingContext ctx) {
+        var title = ctx.queryParam("title").stream().findFirst().orElse("");
+        super.handleResponse(ctx, filmService.getByTitle(title));
+    }
 }
