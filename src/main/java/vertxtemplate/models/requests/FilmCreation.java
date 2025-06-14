@@ -5,8 +5,13 @@ import io.vertx.codegen.json.annotations.JsonGen;
 import io.vertx.core.json.JsonObject;
 import io.vertx.sqlclient.templates.annotations.ParametersMapped;
 import io.vertx.sqlclient.templates.annotations.RowMapped;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Data;
 import lombok.NonNull;
+import org.hibernate.validator.constraints.Length;
 
 @DataObject
 @JsonGen
@@ -14,10 +19,19 @@ import lombok.NonNull;
 @RowMapped
 @Data
 public class FilmCreation {
-    private String title;
+    @NotBlank
+    @Length(max = 255) private String title;
+
     private String description;
+
+    @PositiveOrZero
     private Integer releaseYear;
+
+    @PositiveOrZero
     private Integer length;
+
+    @DecimalMin("1.0")
+    @DecimalMax("5.0")
     private Float rating;
 
     public static FilmCreation fromJson(@NonNull Object json) {

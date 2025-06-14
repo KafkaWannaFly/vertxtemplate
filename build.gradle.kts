@@ -48,6 +48,9 @@ dependencies {
     implementation("io.vertx:vertx-pg-client:$vertxVersion")
     implementation("com.ongres.scram:scram-client:3.1")
     implementation("jakarta.inject:jakarta.inject-api:2.0.1")
+    implementation("org.hibernate:hibernate-validator:8.0.2.Final")
+    implementation("jakarta.validation:jakarta.validation-api:3.1.1")
+    implementation("org.glassfish:jakarta.el:5.0.0-M1")
 
     implementation("io.vertx:vertx-codegen:$vertxVersion")
     implementation("io.vertx:vertx-sql-client-templates:$vertxVersion")

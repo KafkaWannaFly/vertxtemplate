@@ -14,7 +14,8 @@ public class FilmController extends BaseController {
     }
 
     public void insert(RoutingContext ctx) {
-        var film = ctx.body().asJsonObject().mapTo(FilmCreation.class);
+        var film = this.extractAndValidateBody(ctx, FilmCreation.class);
+
         super.handleResponse(ctx, filmService.insert(film));
     }
 

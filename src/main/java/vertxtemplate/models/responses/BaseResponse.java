@@ -11,4 +11,13 @@ import lombok.Data;
 @JsonGen
 public class BaseResponse {
     private Object data;
+    private Object error;
+
+    public static BaseResponse data(Object data) {
+        return new BaseResponse(data, null);
+    }
+
+    public static BaseResponse error(Object error) {
+        return new BaseResponse(null, error);
+    }
 }

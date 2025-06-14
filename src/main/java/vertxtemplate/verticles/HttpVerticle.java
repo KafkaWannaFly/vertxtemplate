@@ -6,10 +6,14 @@ import io.vertx.core.json.Json;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.handler.BodyHandler;
 import jakarta.inject.Inject;
+import jakarta.validation.ValidationException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import vertxtemplate.configs.Config;
 import vertxtemplate.controllers.AppControllers;
+import vertxtemplate.models.responses.BaseResponse;
+
+import java.util.NoSuchElementException;
 
 @Slf4j
 @RequiredArgsConstructor(onConstructor_ = @Inject)
@@ -84,17 +88,19 @@ public class HttpVerticle extends VerticleBase {
         });
 
         router.route().failureHandler(ctx -> {
-            int statusCode = ctx.statusCode() > 0 ? ctx.statusCode() : 500;
             Throwable failure = ctx.failure();
 
-            if (failure != null) {
-                log.error("Request failed", failure);
-            }
+            var statusCode = switch (failure) {
+                case ValidationException ignored -> 400;
+                case NoSuchElementException ignored -> 404;
+                case null, default -> {
+                    log.error("Request failed", failure);
+                    yield 500;
+                }
+            };
 
-            ctx.response()
-                    .setStatusCode(statusCode)
-                    .end(Json.encodePrettily(
-                            java.util.Map.of("error", failure != null ? failure.getMessage() : "Unknown error")));
+            ctx.response().setStatusCode(statusCode).end(Json.encodePrettily(BaseResponse.error(failure == null ?
+                    "Internal Error" : failure.getMessage())));
         });
     }
 }
