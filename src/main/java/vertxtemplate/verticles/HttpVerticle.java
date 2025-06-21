@@ -9,11 +9,13 @@ import jakarta.inject.Inject;
 import jakarta.validation.ValidationException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.MDC;
 import vertxtemplate.configs.Config;
 import vertxtemplate.controllers.AppControllers;
 import vertxtemplate.models.responses.BaseResponse;
 
 import java.util.NoSuchElementException;
+import java.util.UUID;
 
 @Slf4j
 @RequiredArgsConstructor(onConstructor_ = @Inject)
@@ -49,6 +51,14 @@ public class HttpVerticle extends VerticleBase {
     }
 
     private void configureMiddleware(Router router) {
+        // Request ID for logging
+        router.route().handler(ctx -> {
+            String requestId = UUID.randomUUID().toString();
+            MDC.put("requestId", requestId);
+            ctx.addEndHandler(v -> MDC.clear());
+            ctx.next();
+        });
+
         // Body parsing middleware
         router.route().handler(BodyHandler.create().setBodyLimit(1024 * 1024).setHandleFileUploads(true));
 
@@ -90,17 +100,26 @@ public class HttpVerticle extends VerticleBase {
         router.route().failureHandler(ctx -> {
             Throwable failure = ctx.failure();
 
-            var statusCode = switch (failure) {
-                case ValidationException ignored -> 400;
-                case NoSuchElementException ignored -> 404;
-                case null, default -> {
-                    log.error("Request failed", failure);
-                    yield 500;
-                }
-            };
+            var statusCode =
+                    switch (failure) {
+                        case ValidationException ignored -> 400;
+                        case NoSuchElementException ignored -> 404;
+                        default -> {
+                            log.error("Request failed", failure);
+                            yield 500;
+                        }
+                    };
 
-            ctx.response().setStatusCode(statusCode).end(Json.encodePrettily(BaseResponse.error(failure == null ?
-                    "Internal Error" : failure.getMessage())));
+            ctx.response()
+                    .setStatusCode(statusCode)
+                    .end(Json.encodePrettily(
+                            BaseResponse.error(failure.getMessage())));
         });
+    }
+
+    @Override
+    public Future<?> stop() throws Exception {
+        log.info("Shutting down");
+        return super.stop();
     }
 }

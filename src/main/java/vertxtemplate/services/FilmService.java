@@ -4,12 +4,14 @@ import io.vertx.core.Future;
 import io.vertx.sqlclient.SqlResult;
 import jakarta.inject.Inject;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import vertxtemplate.models.requests.FilmCreation;
 import vertxtemplate.models.responses.Film;
 import vertxtemplate.repos.IFilmRepo;
 
 import java.util.List;
 
+@Slf4j
 @RequiredArgsConstructor(onConstructor_ = @Inject)
 public class FilmService implements IFilmService {
     private final IFilmRepo filmRepo;

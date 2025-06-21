@@ -2,9 +2,11 @@ package vertxtemplate.controllers;
 
 import io.vertx.ext.web.RoutingContext;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import vertxtemplate.models.requests.FilmCreation;
 import vertxtemplate.services.IFilmService;
 
+@Slf4j
 @RequiredArgsConstructor
 public class FilmController extends BaseController {
     private final IFilmService filmService;
