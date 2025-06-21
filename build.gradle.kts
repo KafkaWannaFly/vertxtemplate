@@ -153,7 +153,7 @@ liquibase {
             val password = dbConfig["password"]
 
             arguments = mapOf(
-                "changeLogFile" to "src/main/resources/db/changelog/master.yaml",
+                "changelogFile" to "src/main/resources/db/changelog/master.yaml",
                 "url" to "jdbc:postgresql://$host:$port/$name",
                 "username" to user,
                 "password" to password
@@ -161,4 +161,48 @@ liquibase {
         }
     }
     runList = "main"
+}
+
+val changelogPath = "src/main/resources/db/changelog/master.yaml"
+val changesetDir = "src/main/resources/db/changelog/changesets"
+
+tasks.register("addChangeSet") {
+    doLast {
+        val inputName = project.findProperty("n") as String?
+        if (inputName.isNullOrBlank()) {
+            throw GradleException("Usage: ./gradlew addChangeSet -Pn=your_change_name")
+        }
+
+        val changelog = File(changelogPath)
+        val idRegex = Regex("""id:\s*(\d+)""")
+        val lastId = idRegex.findAll(changelog.readText())
+            .map { it.groupValues[1].toInt() }
+            .maxOrNull() ?: 0
+        val newId = lastId + 1
+
+        val upFile = "${newId}_${inputName}.up.sql"
+        val downFile = "${newId}_${inputName}.down.sql"
+        val upPath = "$changesetDir/$upFile"
+        val downPath = "$changesetDir/$downFile"
+
+        File(upPath).writeText("-- Up migration for $inputName\n")
+        File(downPath).writeText("-- Down migration for $inputName\n")
+
+        val changeSetYaml = """
+  - changeSet:
+      id: $newId
+      author: kafka
+      changes:
+        - sqlFile:
+            path: ./changesets/$upFile
+            relativeToChangelogFile: true
+      rollback:
+        - sqlFile:
+            path: ./changesets/$downFile
+            relativeToChangelogFile: true
+""".trimEnd()
+
+        changelog.appendText("\n$changeSetYaml")
+        println("Created $upPath, $downPath and updated $changelogPath")
+    }
 }
