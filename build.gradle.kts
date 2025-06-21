@@ -188,10 +188,19 @@ tasks.register("addChangeSet") {
         File(upPath).writeText("-- Up migration for $inputName\n")
         File(downPath).writeText("-- Down migration for $inputName\n")
 
+        val gitUser = ProcessBuilder("git", "config", "user.name")
+            .redirectErrorStream(true)
+            .start()
+            .inputStream
+            .bufferedReader()
+            .readText()
+            .trim()
+            .take(255)
+
         val changeSetYaml = """
   - changeSet:
       id: $newId
-      author: kafka
+      author: $gitUser
       changes:
         - sqlFile:
             path: ./changesets/$upFile
