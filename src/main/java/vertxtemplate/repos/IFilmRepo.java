@@ -13,8 +13,6 @@ public interface IFilmRepo {
 
     Future<SqlResult<Void>> insertMany(List<FilmCreation> films);
 
-    Future<SqlResult<List<Film>>> getAll();
-
     Future<RowSet<Film>> getById(int id);
 
     Future<SqlResult<List<Film>>> getByTitle(String title);

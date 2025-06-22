@@ -8,8 +8,6 @@ import vertxtemplate.models.responses.Film;
 import java.util.List;
 
 public interface IFilmService {
-    Future<List<Film>> getAll();
-
     Future<SqlResult<Void>> insert(FilmCreation filmCreation);
 
     Future<SqlResult<Void>> insertMany(List<FilmCreation> filmCreations);

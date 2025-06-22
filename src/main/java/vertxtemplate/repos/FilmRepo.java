@@ -53,17 +53,6 @@ public class FilmRepo implements IFilmRepo {
     }
 
     @Override
-    public Future<SqlResult<List<Film>>> getAll() {
-        var query = """
-                select *
-                from film
-                """;
-        return SqlTemplate.forQuery(pool, query)
-                .collecting(FilmRowMapper.COLLECTOR)
-                .execute(Map.of());
-    }
-
-    @Override
     public Future<RowSet<Film>> getById(int id) {
         var query =
                 """

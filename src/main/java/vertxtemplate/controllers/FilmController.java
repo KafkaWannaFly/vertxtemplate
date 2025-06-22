@@ -11,10 +11,6 @@ import vertxtemplate.services.IFilmService;
 public class FilmController extends BaseController {
     private final IFilmService filmService;
 
-    public void getAll(RoutingContext ctx) {
-        super.handleResponse(ctx, filmService.getAll());
-    }
-
     public void insert(RoutingContext ctx) {
         var film = this.extractAndValidateBody(ctx, FilmCreation.class);
 
