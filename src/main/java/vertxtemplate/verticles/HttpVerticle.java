@@ -110,10 +110,7 @@ public class HttpVerticle extends VerticleBase {
                         }
                     };
 
-            ctx.response()
-                    .setStatusCode(statusCode)
-                    .end(Json.encodePrettily(
-                            BaseResponse.error(failure.getMessage())));
+            ctx.response().setStatusCode(statusCode).end(Json.encodePrettily(BaseResponse.error(failure.getMessage())));
         });
     }
 
