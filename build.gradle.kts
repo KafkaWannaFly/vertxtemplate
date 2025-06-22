@@ -118,10 +118,10 @@ tasks.withType<JavaExec> {
 spotless {
     isEnforceCheck = true
     java {
-        importOrder("java|javax", "vertxtemplate", "com", "\\#vertxtemplate", "\\#", "")
         removeUnusedImports()
         palantirJavaFormat().formatJavadoc(true)
         formatAnnotations()
+        importOrder("", "java|javax", "\\#")
         trimTrailingWhitespace()
         targetExclude("**/generated/**", "**/build/**")
     }
