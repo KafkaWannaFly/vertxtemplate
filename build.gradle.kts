@@ -41,7 +41,7 @@ dependencies {
     testCompileOnly("org.projectlombok:lombok:$lombokVersion")
     testAnnotationProcessor("org.projectlombok:lombok:$lombokVersion")
 
-    val vertxVersion = "5.0.0"
+    val vertxVersion = "5.0.2"
     implementation(platform("io.vertx:vertx-stack-depchain:$vertxVersion"))
     implementation("io.vertx:vertx-auth-jwt:$vertxVersion")
     implementation("io.vertx:vertx-web:$vertxVersion")
@@ -60,7 +60,7 @@ dependencies {
     val daggerVersion = "2.53"
     implementation("com.google.dagger:dagger:$daggerVersion")
     annotationProcessor("com.google.dagger:dagger-compiler:$daggerVersion")
-    implementation("org.apache.commons:commons-lang3:3.17.0")
+    implementation("org.apache.commons:commons-lang3:3.18.0")
 
     val log4jVersion = "2.24.3"
     implementation("org.slf4j:slf4j-api:2.0.16")
